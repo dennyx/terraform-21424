@@ -22,7 +22,9 @@
  * ```
  */
 
-provider "azurerm" {}
+provider "azurerm" {
+  
+}
 
 locals {
   private_key = "${file(var.ssh_private_key_filename)}"
@@ -35,6 +37,7 @@ module "dcos-tested-oses" {
 
   providers = {
     azurerm = "azurerm"
+    
   }
 
   os           = "${var.dcos_instance_os}"

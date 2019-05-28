@@ -21,7 +21,6 @@
  */
 
 provider "azurerm" {
-  version = "1.27.0"
 }
 
 module "dcos-bootstrap-instances" {
@@ -29,7 +28,7 @@ module "dcos-bootstrap-instances" {
 
   providers = {
     azurerm = "azurerm"
-    version = "1.27.0"
+    
   }
 
   num                       = 1

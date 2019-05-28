@@ -28,49 +28,49 @@
 #   }
 # }
 
-# provider "azurerm" {}
+provider "azurerm" {}
 
-# # Create a resource group
-# resource "azurerm_resource_group" "rg" {
-#   name     = "dcos-${var.cluster_name}"
-#   location = "${var.location}"
-#   tags     = "${var.tags}"
-# }
+# Create a resource group
+resource "azurerm_resource_group" "rg" {
+  name     = "dcos-${var.cluster_name}"
+  location = "${var.location}"
+  tags     = "${var.tags}"
+}
 
-# module "network" {
-#   source  = "dcos-terraform/vnet/azurerm"
-#   version = "~> 0.1.0"
+module "network" {
+  source  = "dcos-terraform/vnet/azurerm"
+  version = "~> 0.1.0"
 
-#   providers = {
-#     azurerm = "azurerm"
-#   }
+  providers = {
+    azurerm = "azurerm"
+  }
 
-#   subnet_range = "${var.subnet_range}"
-#   cluster_name = "${var.cluster_name}"
-#   location     = "${var.location}"
+  subnet_range = "${var.subnet_range}"
+  cluster_name = "${var.cluster_name}"
+  location     = "${var.location}"
 
-#   resource_group_name = "${azurerm_resource_group.rg.name}"
-#   tags                = "${var.tags}"
-# }
+  resource_group_name = "${azurerm_resource_group.rg.name}"
+  tags                = "${var.tags}"
+}
 
-# # module "network-security-group" {
-# #   source  = "dcos-terraform/nsg/azurerm"
-# #   version = "~> 0.1.0"
+module "network-security-group" {
+  source  = "dcos-terraform/nsg/azurerm"
+  version = "~> 0.1.0"
 
-# #   providers = {
-# #     azurerm = "azurerm"
-# #     version = "1.27.0"
-# #   }
+  providers = {
+    azurerm = "azurerm"
+    
+  }
 
-# #   location                       = "${var.location}"
-# #   subnet_range                   = "${var.subnet_range}"
-# #   cluster_name                   = "${var.cluster_name}"
-# #   admin_ips                      = ["${var.admin_ips}"]
-# #   public_agents_additional_ports = ["${var.public_agents_additional_ports}"]
+  location                       = "${var.location}"
+  subnet_range                   = "${var.subnet_range}"
+  cluster_name                   = "${var.cluster_name}"
+  admin_ips                      = ["${var.admin_ips}"]
+  public_agents_additional_ports = ["${var.public_agents_additional_ports}"]
 
-# #   resource_group_name = "${azurerm_resource_group.rg.name}"
-# #   tags                = "${var.tags}"
-# # }
+  resource_group_name = "${azurerm_resource_group.rg.name}"
+  tags                = "${var.tags}"
+}
 
 # // If External Exhibitor is Specified, Create a Storage Account
 # resource "azurerm_storage_account" "external_exhibitor" {
@@ -105,7 +105,7 @@ module "bootstrap" {
 
   providers = {
     azurerm = "azurerm"
-    version = "1.27.0"
+    
   }
 
   location                  = "${var.location}"

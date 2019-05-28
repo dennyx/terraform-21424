@@ -8,7 +8,7 @@ data "http" "whatismyip" {
 }
 
 provider "azurerm" {
-  version = "~> 1.27.0"
+  
 }
 
 module "dcos" {
@@ -17,16 +17,12 @@ module "dcos" {
   dcos_instance_os    = "centos_7.5"
   cluster_name        = "dcos-dev"
   ssh_public_key_file = "dcos_key.pub"
-  ssh_private_key_filename = "dcos_key"
   admin_ips           = ["${data.http.whatismyip.body}/32"]
   location            = "West US"
 
   # node numbers
   num_masters          = "1"
   num_private_agents   = "1"
-  num_cassandra_agents = "1"
-  num_elastic_agents   = "1"
-  num_kafka_agents     = "1"
   num_public_agents    = "1"
 
   dcos_version = "1.12.0"
