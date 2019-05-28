@@ -73,7 +73,9 @@
  *```
  */
 
-provider "azurerm" {}
+provider "azurerm" {
+  version = "~> 1.27.0"
+}
 
 resource "random_id" "id" {
   byte_length = 2
