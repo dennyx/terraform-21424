@@ -5,6 +5,7 @@ sample repository for https://github.com/hashicorp/terraform/issues/21424
 ## setup
 
 ```bash
+# specify terraform version to 0.12
 git clone https://github.com/dennyx/terraform-21424.git
 cd terraform-main
 terraform init
@@ -13,6 +14,9 @@ terraform init
 ## sample output 
 
 ```text
+test@test:/opt/terraform-21424/terraform-main$ terraform -v
+Terraform v0.12.0
+
 test@test:/opt/terraform-21424/terraform-main$ terraform init
 Initializing modules...
 - dcos in ../terraform-azurerm-dcos
